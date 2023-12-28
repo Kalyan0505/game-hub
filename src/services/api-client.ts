@@ -1,4 +1,8 @@
 import axios from "axios";
+export interface FetchResponse<T> {
+  count: number;
+  results: T[]; // T is a generic type parameter
+}
 
 export default axios.create({
   baseURL: "https://api.rawg.io/api",
