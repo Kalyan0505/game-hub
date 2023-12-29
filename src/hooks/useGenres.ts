@@ -4,7 +4,7 @@ import APIClient from "../services/api-client";
 
 import genres from "../Data/genres";
 
-const apiClient = new APIClient<Genre>("/games");
+const apiClient = new APIClient<Genre>("/genres");
 
 export interface Genre {
   id: number;
@@ -12,12 +12,12 @@ export interface Genre {
   image_background: string;
 }
 
-const useGenres = () =>
-  useQuery({
+const useGenres = () => 
+   useQuery({
     queryKey: ["genres"],
-    queryFn: apiClient.getAll,
+    queryFn:  apiClient.getAll,
     staleTime: 24 * 60 * 60 * 1000, // This is 24hrs
-    initialData: { count: genres.length, results: genres }, // This data is added to our cache
+    initialData: { count: genres.length, results: genres, next: null }, // This data is added to our cache
   });
 
 export default useGenres;
